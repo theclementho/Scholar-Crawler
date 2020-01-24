@@ -1,0 +1,5 @@
+
+.DS_Store
+Crawler/
+__pycache__/
+.vscode/settings.json
