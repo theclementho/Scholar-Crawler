@@ -27,12 +27,16 @@ _AUTHSEARCH = '/citations?view_op=search_authors&hl=en&mauthors={0}'
 _CITATIONAUTH = '/citations?user={0}&hl=en'
 _CITATIONPUB = '/citations?view_op=view_citation&citation_for_view={0}'
 _KEYWORDSEARCH = '/citations?view_op=search_authors&hl=en&mauthors=label:{0}'
+_LABELSEARCH = '/citations?view_op=search_authors&hl=en&mauthors=label:{0}'
+_ORGSEARCH = '/citations?view_op=view_org&hl=en&org={0}'
 _PUBSEARCH = '/scholar?q={0}'
 _SCHOLARPUB = '/scholar?oi=bibs&hl=en&cites={0}'
 _AUTHPROFILE = '/citations?hl=en&user='
+_SORTAUTHPROFILEBYYEAR = '&view_op=list_works&sortby=pubdate'
 _AUTHALLCOAUTHORS = '/citations?hl=en&user={0}#d=gsc_md_cod&u=%2Fcitations%3Fview_op%3Dlist_colleagues%26hl%3Den%26json%3D%26user%3D{0}%23t%3Dgsc_cod_lc'
 
 _CITATIONAUTHRE = r'user=([\w-]*)'
+_ORGAUTHRE = r'org=([0-9]*)'
 _CITATIONPUBRE = r'citation_for_view=([\w-]*:[\w-]*)'
 _SCHOLARCITERE = r'gs_ocit\(event,\'([\w-]*)\''
 _SCHOLARPUBRE = r'cites=([\w-]*)'
@@ -243,7 +247,15 @@ class AuthorProfile(object):
     """Returns an AuthorProfile object containint all CoAuthors of an Author"""
     def __init__(self, __data, id):     
         self.name = __data.find('div', id='gsc_prf_in').text
-        self.affiliation = __data.find('div', class_='gsc_prf_il').text
+        affiliation = __data.find('div', class_='gsc_prf_il')
+        if affiliation:
+            self.affiliation = affiliation.text
+        organization = __data.find_all('a', class_='gsc_prf_ila')
+        if organization:
+            for htmlTag in organization:
+                if re.findall(_ORGAUTHRE, htmlTag['href']):
+                    self.organization = re.findall(_ORGAUTHRE, htmlTag['href'])[0]
+                    break
         self.interests = [i.text.strip() for i in __data.find_all('a', class_='gsc_prf_inta')]
         self.coauthors = {}
         reqURL = __data.find('link', {'rel': 'canonical'})['href']
@@ -251,7 +263,6 @@ class AuthorProfile(object):
         self.id = selfID
         coauthor_section = __data.find('ul', class_='gsc_rsb_a')
         for row in coauthor_section.find_all('li'):
-        # for row in coauthor_section.find_all("span", id=lambda x: x and x.startswith('gsc_rsb-')):
             id = row.find("span", id=lambda x: x and x.startswith('gsc_rsb-'))['id'][8:]
             if (re.findall(r'^[a-zA-Z0-9-_]*', id)[0] != id):
                 print ("Weird character. Change regex for ID! ID in question: ", id)
@@ -292,6 +303,13 @@ class Author(object):
         soup = _get_soup(_HOST+url)
         self.name = soup.find('div', id='gsc_prf_in').text
         self.affiliation = soup.find('div', class_='gsc_prf_il').text
+        organization = soup.find_all('a', class_='gsc_prf_ila')
+        if organization:
+            for htmlTag in organization:
+                if re.findall(_ORGAUTHRE, htmlTag['href']):
+                    self.organization = re.findall(_ORGAUTHRE, htmlTag['href'])[0]
+                    break
+
         self.interests = [i.text.strip() for i in soup.find_all('a', class_='gsc_prf_inta')]
         
         # h-index, i10-index and h-index, i10-index in the last 5 years
@@ -360,6 +378,11 @@ def search_keyword(keyword):
     soup = _get_soup(_HOST+url)
     return _search_citation_soup(soup)
 
+def search_interests(interest):
+    """Searcy by interest and return a generator of Author objects"""
+    url = _LABELSEARCH.format(requests.utils.quote(interest))
+    soup = _get_soup(_HOST+url)
+    return _search_citation_soup(soup)
 
 def search_pubs_custom_url(url):
     """Search by custom URL and return a generator of Publication objects
@@ -376,6 +399,6 @@ def search_author_custom_url(url):
 
 def auth_all_coauthors(id):
     """Open an author profile given their ID and return a generator of Author objects"""
-    print(_HOST+_AUTHPROFILE+id)
-    soup = _get_soup(_HOST+_AUTHPROFILE+id)
+    # print(_HOST+_AUTHPROFILE+id)
+    soup = _get_soup(_HOST+_AUTHPROFILE+id+_SORTAUTHPROFILEBYYEAR)
     return AuthorProfile(soup, id)
