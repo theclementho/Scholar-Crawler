@@ -14,6 +14,7 @@ import re
 import requests
 import sys
 import time
+import datetime
 
 _GOOGLEID = hashlib.md5(str(random.random()).encode('utf-8')).hexdigest()[:16]
 _COOKIES = {'GSP': 'ID={0}:CF=4'.format(_GOOGLEID)}
@@ -119,7 +120,6 @@ def _search_scholar_soup(soup):
         else:
             break
 
-
 def _search_citation_soup(soup):
     """Generator that returns Author objects from the author search page"""
     while True:
@@ -129,7 +129,24 @@ def _search_citation_soup(soup):
         if next_button and 'disabled' not in next_button.attrs:
             url = next_button['onclick'][17:-1]
             url = codecs.getdecoder("unicode_escape")(url)[0]
-            soup = _get_soup(_HOST+url)
+            soup = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
+        else:
+            break
+
+def _search_authIDs_soup(soup):
+    """Generator that returns Author IDs, names, interests from search page"""
+    while True:
+        for row in soup.find_all('div', 'gsc_1usr'):
+            id = re.findall(_CITATIONAUTHRE, row('a')[0]['href'])[0]
+            name = row.find('h3', class_=_find_tag_class_name(row, 'h3', 'name')).text
+            interests = [i.text.strip() for i in 
+                        row.find_all('a', class_=_find_tag_class_name(row, 'a', 'one_int'))]
+            yield id, name, interests
+        next_button = soup.find(class_='gs_btnPR gs_in_ib gs_btn_half gs_btn_lsb gs_btn_srt gsc_pgn_pnx')
+        if next_button and 'disabled' not in next_button.attrs:
+            url = next_button['onclick'][17:-1]
+            url = codecs.getdecoder("unicode_escape")(url)[0]
+            soup = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
         else:
             break
 
@@ -165,7 +182,8 @@ class Publication(object):
             if title.find('a'):
                 self.bib['url'] = title.find('a')['href']
             authorinfo = databox.find('div', class_='gs_a')
-            self.bib['author'] = ' and '.join([i.strip() for i in authorinfo.text.split(' - ')[0].split(',')])
+            # self.bib['author'] = ' and '.join([i.strip() for i in authorinfo.text.split(' - ')[0].split(',')])
+            self.bib['author'] = set([i.strip() for i in authorinfo.text.split(' - ')[0].split(',')])
             if databox.find('div', class_='gs_rs'):
                 self.bib['abstract'] = databox.find('div', class_='gs_rs').text
                 if self.bib['abstract'][0:8].lower() == 'abstract':
@@ -192,8 +210,9 @@ class Publication(object):
             for item in soup.find_all('div', class_='gs_scl'):
                 key = item.find(class_='gsc_vcd_field').text
                 val = item.find(class_='gsc_vcd_value')
-                if key == 'Authors':
-                    self.bib['author'] = ' and '.join([i.strip() for i in val.text.split(',')])
+                if key == 'Authors' or key == "Inventors":
+                    # self.bib['author'] = ' and '.join([i.strip() for i in val.text.split(',')])
+                    self.bib['author'] = set([i.strip() for i in val.text.split(',')])
                 elif key == 'Journal':
                     self.bib['journal'] = val.text
                 elif key == 'Volume':
@@ -205,7 +224,13 @@ class Publication(object):
                 elif key == 'Publisher':
                     self.bib['publisher'] = val.text
                 elif key == 'Publication date':
-                    self.bib['year'] = arrow.get(val.text).year
+                    year = re.findall(r'20[0-9][0-9]', val.text)[0]
+                    if self.bib['year'] == None:
+                        print("Error in regex looking for the year!")
+                    else:
+                        year = int(year)
+                        self.bib['year'] = year
+                        # self.bib['year'] = arrow.get(val.text).year
                 elif key == 'Description':
                     if val.text[0:8].lower() == 'abstract':
                         val = val.text[9:].strip()
@@ -244,8 +269,11 @@ class Publication(object):
         return pprint.pformat(self.__dict__)
 
 class AuthorProfile(object):
-    """Returns an AuthorProfile object containint all CoAuthors of an Author"""
-    def __init__(self, __data, id):     
+    """Returns an AuthorProfile object containing all CoAuthors of an Author"""
+    def __init__(self, __data, id):
+        reqURL = __data.find('link', {'rel': 'canonical'})['href']
+        selfID = re.findall(_AUTHPROFILERE, reqURL)[0]
+        self.id = selfID
         self.name = __data.find('div', id='gsc_prf_in').text
         affiliation = __data.find('div', class_='gsc_prf_il')
         if affiliation:
@@ -258,21 +286,49 @@ class AuthorProfile(object):
                     break
         self.interests = [i.text.strip() for i in __data.find_all('a', class_='gsc_prf_inta')]
         self.coauthors = {}
-        reqURL = __data.find('link', {'rel': 'canonical'})['href']
-        selfID = re.findall(_AUTHPROFILERE, reqURL)[0]
-        self.id = selfID
         coauthor_section = __data.find('ul', class_='gsc_rsb_a')
-        for row in coauthor_section.find_all('li'):
-            id = row.find("span", id=lambda x: x and x.startswith('gsc_rsb-'))['id'][8:]
-            if (re.findall(r'^[a-zA-Z0-9-_]*', id)[0] != id):
-                print ("Weird character. Change regex for ID! ID in question: ", id)
-            name = row.find(tabindex="-1").text
-            affiliation = row.find(class_="gsc_rsb_a_ext").text
-            self.coauthors[id] = ({
-                'id': id,
-                'name': name,
-                'affiliation': affiliation
-            })
+        if coauthor_section:
+            for row in coauthor_section.find_all('li'):
+                id = row.find("span", id=lambda x: x and x.startswith('gsc_rsb-'))['id'][8:]
+                if (re.findall(r'^[a-zA-Z0-9-_]*', id)[0] != id):
+                    print ("Weird character. Change regex for ID! ID in question: ", id)
+                name = row.find(tabindex="-1").text
+                affiliation = row.find(class_="gsc_rsb_a_ext").text
+                self.coauthors[id] = ({
+                    'id': id,
+                    'name': name,
+                    'affiliation': affiliation
+                })
+
+        self.publications = list()
+        pubstart = 0
+        url_citations = _CITATIONAUTH.format(selfID)
+        within_5_years = True
+        this_year = datetime.datetime.now().year
+        while within_5_years:
+            for row in __data.find_all('tr', class_='gsc_a_tr'):
+                new_pub = Publication(row, 'citations')
+                if this_year - new_pub.bib['year'] > 5:
+                    within_5_years = False
+                    break
+                else:
+                    new_pub.fill()
+                    # Putting relevant data into return object
+                    pub_info = {}
+                    if (new_pub.bib['title']):
+                        pub_info['title'] = new_pub.bib['title']
+                    if (new_pub.bib['author']):
+                        pub_info['author'] = new_pub.bib['author']
+                    if (new_pub.bib['year']):
+                        pub_info['year'] = new_pub.bib['year']
+                    self.publications.append(pub_info)
+
+            if 'disabled' not in __data.find('button', id='gsc_bpf_more').attrs and within_5_years:
+                pubstart += _PAGESIZE
+                url = '{0}&cstart={1}&pagesize={2}'.format(url_citations, pubstart, _PAGESIZE)
+                __data = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
+            else:
+                break
 
 class Author(object):
     """Returns an object for a single author"""
@@ -300,7 +356,7 @@ class Author(object):
         """Populate the Author with information from their profile"""
         url_citations = _CITATIONAUTH.format(self.id)
         url = '{0}&pagesize={1}'.format(url_citations, _PAGESIZE)
-        soup = _get_soup(_HOST+url)
+        soup = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
         self.name = soup.find('div', id='gsc_prf_in').text
         self.affiliation = soup.find('div', class_='gsc_prf_il').text
         organization = soup.find_all('a', class_='gsc_prf_ila')
@@ -340,14 +396,20 @@ class Author(object):
 
         self.publications = list()
         pubstart = 0
-        while True:
+        within_5_years = True
+        this_year = datetime.datetime.now().year
+        while within_5_years:
             for row in soup.find_all('tr', class_='gsc_a_tr'):
                 new_pub = Publication(row, 'citations')
-                self.publications.append(new_pub)
-            if 'disabled' not in soup.find('button', id='gsc_bpf_more').attrs:
+                if this_year - new_pub.bib['year'] > 5:
+                    within_5_years = False
+                    break
+                else:
+                    self.publications.append(new_pub)
+            if 'disabled' not in soup.find('button', id='gsc_bpf_more').attrs and within_5_years:
                 pubstart += _PAGESIZE
                 url = '{0}&cstart={1}&pagesize={2}'.format(url_citations, pubstart, _PAGESIZE)
-                soup = _get_soup(_HOST+url)
+                soup = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
             else:
                 break
 
@@ -379,17 +441,22 @@ def search_keyword(keyword):
     return _search_citation_soup(soup)
 
 def search_interests(interest):
-    """Searcy by interest and return a generator of Author objects"""
+    """Search by interest and return a generator of Author IDs, names, interests from search page"""
     url = _LABELSEARCH.format(requests.utils.quote(interest))
     soup = _get_soup(_HOST+url)
-    return _search_citation_soup(soup)
+    return _search_authIDs_soup(soup)
+
+def search_org(orgnum):
+    """Search by organization number and return a generator of Author IDs, names, interests from search page"""
+    url = _ORGSEARCH.format(requests.utils.quote(orgnum))
+    soup = _get_soup(_HOST+url)
+    return _search_authIDs_soup(soup)
 
 def search_pubs_custom_url(url):
     """Search by custom URL and return a generator of Publication objects
     URL should be of the form '/scholar?q=...'"""
     soup = _get_soup(_HOST+url)
     return _search_scholar_soup(soup)
-
 
 def search_author_custom_url(url):
     """Search by custom URL and return a generator of Publication objects
