@@ -318,6 +318,7 @@ class AuthorProfile(object):
                     if (new_pub.bib['title']):
                         pub_info['title'] = new_pub.bib['title']
                     if (new_pub.bib['author']):
+                        new_pub.bib['author'].discard(self.name)
                         pub_info['author'] = new_pub.bib['author']
                     if (new_pub.bib['year']):
                         pub_info['year'] = new_pub.bib['year']
@@ -405,6 +406,7 @@ class Author(object):
                     within_5_years = False
                     break
                 else:
+                    new_pub.bib['author'].discard(self.name)
                     self.publications.append(new_pub)
             if 'disabled' not in soup.find('button', id='gsc_bpf_more').attrs and within_5_years:
                 pubstart += _PAGESIZE
