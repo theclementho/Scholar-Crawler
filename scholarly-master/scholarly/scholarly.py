@@ -129,7 +129,7 @@ def _search_citation_soup(soup):
         if next_button and 'disabled' not in next_button.attrs:
             url = next_button['onclick'][17:-1]
             url = codecs.getdecoder("unicode_escape")(url)[0]
-            soup = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
+            soup = _get_soup(_HOST+url)
         else:
             break
 
@@ -139,14 +139,14 @@ def _search_authIDs_soup(soup):
         for row in soup.find_all('div', 'gsc_1usr'):
             id = re.findall(_CITATIONAUTHRE, row('a')[0]['href'])[0]
             name = row.find('h3', class_=_find_tag_class_name(row, 'h3', 'name')).text
-            interests = [i.text.strip() for i in 
-                        row.find_all('a', class_=_find_tag_class_name(row, 'a', 'one_int'))]
+            interests = set([i.text.strip() for i in 
+                        row.find_all('a', class_=_find_tag_class_name(row, 'a', 'one_int'))])
             yield id, name, interests
         next_button = soup.find(class_='gs_btnPR gs_in_ib gs_btn_half gs_btn_lsb gs_btn_srt gsc_pgn_pnx')
         if next_button and 'disabled' not in next_button.attrs:
             url = next_button['onclick'][17:-1]
             url = codecs.getdecoder("unicode_escape")(url)[0]
-            soup = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
+            soup = _get_soup(_HOST+url)
         else:
             break
 
@@ -313,6 +313,7 @@ class AuthorProfile(object):
                     break
                 else:
                     new_pub.fill()
+                    # print("Adding publication: {0}".format(new_pub.bib['title']))
                     # Putting relevant data into return object
                     pub_info = {}
                     if (new_pub.bib['title']):
@@ -320,6 +321,7 @@ class AuthorProfile(object):
                     if (new_pub.bib['author']):
                         new_pub.bib['author'].discard(self.name)
                         pub_info['author'] = new_pub.bib['author']
+                        # print("Authors: {0}".format(pub_info['author']))
                     if (new_pub.bib['year']):
                         pub_info['year'] = new_pub.bib['year']
                     self.publications.append(pub_info)
@@ -433,7 +435,7 @@ def search_author(name):
     """Search by author name and return a generator of Author objects"""
     url = _AUTHSEARCH.format(requests.utils.quote(name))
     soup = _get_soup(_HOST+url)
-    return _search_citation_soup(soup)
+    return _search_authIDs_soup(soup)
 
 
 def search_keyword(keyword):

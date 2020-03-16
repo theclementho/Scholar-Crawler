@@ -27,9 +27,9 @@ if test_search_by_org:
             print(auth_profile.organization)
         else:
             print('No organization found for', auth_profile.name)
-        for interest in auth_profile.interests:
-            print(interest)
-            break
+        # for interest in auth_profile.interests:
+        #     print(interest)
+        #     break
         author_downloaded = auth_profile
         break
     # sys.exit(0)
@@ -129,3 +129,16 @@ if save:
     # Save the file
     with open(save_location, mode='w') as historical_info:
         json.dump(author_info, historical_info)
+
+
+"""Check if a file exists, if not then create a new one and save to it
+Good for debugging"""
+try:
+    genfile = open('labelSave.txt','r')
+    generator = json.load(genfile)
+except FileNotFoundError:
+
+    genfile = open('labelSave.txt', 'w')
+    json.dump(generator, genfile)
+finally:
+    genfile.close()
