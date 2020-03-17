@@ -1,0 +1,1 @@
+{"zzfKxNUAAAAJ": {"name": "Jens Meinicke", "gs_profile_id": "zzfKxNUAAAAJ", "affiliation": "Carnegie Mellon University, Pittsburgh, USA", "interest": ["Feature Interaction", "Debugging", "Software Engineering", "Software Analysis", "Software Product Lines"]}}

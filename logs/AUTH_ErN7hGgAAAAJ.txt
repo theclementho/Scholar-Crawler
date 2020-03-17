@@ -1,0 +1,1 @@
+{"ErN7hGgAAAAJ": {"name": "Josep Silva", "gs_profile_id": "ErN7hGgAAAAJ", "affiliation": "Universitat Polit\u00e8cnica de Val\u00e8ncia", "interest": ["Debugging", "Self-healing systems", "Program slicing", "Static analysis of programs", "Semantics of programming languages"]}}

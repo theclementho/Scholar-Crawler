@@ -1,0 +1,1 @@
+{"jqLfckEAAAAJ": [["Alex Groce", 2018, "Tutorial: DeepState: bringing vulnerability detection tools into the development cycle"], ["Gustavo Grieco", 2018, "Tutorial: DeepState: bringing vulnerability detection tools into the development cycle"], ["Artem Dinaburg", 2018, "The past, present, and future of cyberdyne"]]}

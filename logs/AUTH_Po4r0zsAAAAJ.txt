@@ -1,0 +1,1 @@
+{"Po4r0zsAAAAJ": {"name": "Diego Caminha B de Oliveira", "gs_profile_id": "Po4r0zsAAAAJ", "affiliation": "Former Postdoctoral Researcher, University of Utah and Verimag/CNRS", "interest": ["SMT solvers", "decision procedures", "formal methods", "debugging", "concurrent systems"]}}

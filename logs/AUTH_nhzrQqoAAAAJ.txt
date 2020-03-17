@@ -1,0 +1,1 @@
+{"nhzrQqoAAAAJ": {"name": "Pedro Machado", "gs_profile_id": "nhzrQqoAAAAJ", "affiliation": "Engineering MSc", "interest": ["Debugging", "Testing", "Fault localization"]}}

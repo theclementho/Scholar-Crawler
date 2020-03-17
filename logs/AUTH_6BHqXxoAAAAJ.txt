@@ -1,0 +1,1 @@
+{"6BHqXxoAAAAJ": {"name": "Dr. Junyan Ma", "gs_profile_id": "6BHqXxoAAAAJ", "affiliation": "Chang'an University", "interest": ["sensor network", "fault diagnosis", "debugging", "VANET"]}}

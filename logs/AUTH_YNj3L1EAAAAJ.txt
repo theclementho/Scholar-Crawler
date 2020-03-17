@@ -1,0 +1,1 @@
+{"YNj3L1EAAAAJ": {"name": "erwan jahier", "gs_profile_id": "YNj3L1EAAAAJ", "affiliation": "CNRS/Verimag", "interest": ["reactive systems", "programming languages", "synchronous systems", "test", "debugging"]}}

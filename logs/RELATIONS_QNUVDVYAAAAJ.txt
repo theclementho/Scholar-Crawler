@@ -1,0 +1,1 @@
+{"QNUVDVYAAAAJ": [["Olaf Chitil", 2017, "A Type Generic Definition for Debugging Lazy Functional Programs by Value Observation"], ["Colin Runciman", 2016, "A Lightweight Hat: Simple Type-Preserving Instrumentation for Self-Tracing Lazy Functional Programs"]]}

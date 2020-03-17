@@ -1,0 +1,1 @@
+{"Z27gH2wAAAAJ": {"name": "Franz Wotawa", "gs_profile_id": "Z27gH2wAAAAJ", "affiliation": "Full professor of Software Engineering", "interest": ["Testing", "Diagnosis", "Artificial Intelligence", "Robotics", "Debugging"]}}

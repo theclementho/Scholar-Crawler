@@ -1,0 +1,1 @@
+{"NzGgprIAAAAJ": {"name": "David DeLiema", "gs_profile_id": "NzGgprIAAAAJ", "affiliation": "Assistant Professor - University of Minnesota - Department of Educational Psychology", "interest": ["Debugging", "Productive Failure", "Embodied cognition", "Epistemology"]}}

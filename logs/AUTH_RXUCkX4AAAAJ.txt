@@ -1,0 +1,1 @@
+{"RXUCkX4AAAAJ": {"name": "Sangmin Park", "gs_profile_id": "RXUCkX4AAAAJ", "affiliation": "Two Sigma Investments", "interest": ["Software Engineering", "Software Testing", "Debugging", "Program Analysis", "Concurrency"]}}

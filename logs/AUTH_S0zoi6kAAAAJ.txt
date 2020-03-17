@@ -1,0 +1,1 @@
+{"S0zoi6kAAAAJ": {"name": "\uae40\uc815\ud638", "gs_profile_id": "S0zoi6kAAAAJ", "affiliation": "\uc131\uade0\uad00\ub300\ud559\uad50 \uc18c\ud504\ud2b8\uc6e8\uc5b4\ub300\ud559", "interest": ["Software engineering", "Debugging", "Fault localization", "Automated program repair", "Regression testing"]}}

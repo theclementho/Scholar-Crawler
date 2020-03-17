@@ -1,0 +1,1 @@
+{"70Ha3g0AAAAJ": {"name": "Nick Papoulias", "gs_profile_id": "70Ha3g0AAAAJ", "affiliation": "Univ. Grenoble-Alpes , Team Erods, LIG lab", "interest": ["Programming Languages", "Parsing", "DSLs and Simulation", "Reflection", "Debugging"]}}

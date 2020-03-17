@@ -1,0 +1,1 @@
+{"Oh3z3nEAAAAJ": {"name": "Jan B\u00e6kgaard Pedersen", "gs_profile_id": "Oh3z3nEAAAAJ", "affiliation": "University of Nevada Las Vegas", "interest": ["Computer Science: Programming Languages", "Compilers", "Parallel Programming", "Process Oriented Design", "Debugging"]}}

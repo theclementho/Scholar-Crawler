@@ -1,0 +1,1 @@
+{"nEVHB1wAAAAJ": {"name": "Minh Ngoc Dinh", "gs_profile_id": "nEVHB1wAAAAJ", "affiliation": "RMIT University", "interest": ["HPC", "supercomputer", "debugging", "workflow"]}}

@@ -1,0 +1,1 @@
+{"bF9qmvsAAAAJ": {"name": "Carsten Sinz", "gs_profile_id": "bF9qmvsAAAAJ", "affiliation": "Karlsruhe Institute of Technology (KIT)", "interest": ["Software Verification", "Debugging", "SAT", "Visualization"]}}

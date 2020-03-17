@@ -1,0 +1,1 @@
+{"VXQGJD0AAAAJ": {"name": "Manuel Hermenegildo", "gs_profile_id": "VXQGJD0AAAAJ", "affiliation": "IMDEA Software Institute and Technical U. of Madrid (UPM)", "interest": ["Abstract interpretation-based program analysis", "verification", "debugging", "and optimization", "programming language design and imple"]}}

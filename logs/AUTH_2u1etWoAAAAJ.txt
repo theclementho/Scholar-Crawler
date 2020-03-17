@@ -1,0 +1,1 @@
+{"2u1etWoAAAAJ": {"name": "Alireza Mahzoon", "gs_profile_id": "2u1etWoAAAAJ", "affiliation": "University of Bremen", "interest": ["Verification", "Debugging", "Arithmetic circuits", "High level synthesis"]}}

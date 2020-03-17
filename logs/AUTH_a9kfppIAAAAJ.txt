@@ -1,0 +1,1 @@
+{"a9kfppIAAAAJ": {"name": "Kai Yu", "gs_profile_id": "a9kfppIAAAAJ", "affiliation": "State Key Laboratory of Software Development Environment, Beihang University", "interest": ["Debugging", "Testing", "Software Evolution", "Fault Localization", "Regression Fault"]}}

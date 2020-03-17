@@ -1,0 +1,1 @@
+{"KVNaMGAAAAAJ": {"name": "Michael Perscheid", "gs_profile_id": "KVNaMGAAAAAJ", "affiliation": "Hasso-Plattner-Institute, University of Potsdam", "interest": ["Debugging", "Dynamic Analysis", "Program Comprehension", "Reverse Engineering"]}}

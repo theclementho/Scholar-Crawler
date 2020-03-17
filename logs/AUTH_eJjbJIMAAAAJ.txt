@@ -1,0 +1,1 @@
+{"eJjbJIMAAAAJ": {"name": "Christian Wirth", "gs_profile_id": "eJjbJIMAAAAJ", "affiliation": "Oracle Labs", "interest": ["compilation", "programming languages", "javascript", "node.js", "debugging"]}}

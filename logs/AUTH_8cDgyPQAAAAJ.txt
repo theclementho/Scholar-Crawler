@@ -1,0 +1,1 @@
+{"8cDgyPQAAAAJ": {"name": "Philipp Wagner", "gs_profile_id": "8cDgyPQAAAAJ", "affiliation": "Chair of Integrated Systems, Technical University of Munich", "interest": ["Computer Architectures", "Debugging", "MPSoC"]}}

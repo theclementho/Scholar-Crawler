@@ -1,0 +1,1 @@
+{"fpHLV0wAAAAJ": {"name": "Ziad A. Al-Sharif", "gs_profile_id": "fpHLV0wAAAAJ", "affiliation": "Associate Professor of Computer Science and Software Engineering at JUST, Irbid 22110, Jordan", "interest": ["Security", "Digital Forensics", "Software Engineering", "Testing", "Debugging"]}}

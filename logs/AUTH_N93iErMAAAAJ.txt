@@ -1,0 +1,1 @@
+{"N93iErMAAAAJ": {"name": "Zolt\u00e1n Ujhelyi", "gs_profile_id": "N93iErMAAAAJ", "affiliation": "Technology Expert, IncQuery Labs Ltd", "interest": ["Model transformations", "Program slicing", "Debugging"]}}

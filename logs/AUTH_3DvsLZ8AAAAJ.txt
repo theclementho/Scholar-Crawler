@@ -1,0 +1,1 @@
+{"3DvsLZ8AAAAJ": {"name": "Lorenz B\u00fchmann", "gs_profile_id": "3DvsLZ8AAAAJ", "affiliation": "Phd Student, Universit\u00e4t Leipzig", "interest": ["OWL", "Semantic Web", "Debugging", "Machine Learning", "Linked Data"]}}

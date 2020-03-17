@@ -1,0 +1,1 @@
+{"V6ES1nIAAAAJ": {"name": "Armin Biere", "gs_profile_id": "V6ES1nIAAAAJ", "affiliation": "Johannes Kepler University Linz", "interest": ["Satisfiability", "Formal Verification", "Model Checking", "Testing", "Debugging"]}}

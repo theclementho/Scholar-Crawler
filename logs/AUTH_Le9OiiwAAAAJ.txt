@@ -1,0 +1,1 @@
+{"Le9OiiwAAAAJ": {"name": "Tilman Michaeli", "gs_profile_id": "Le9OiiwAAAAJ", "affiliation": "Computing Education Research, FAU Erlangen-N\u00fcrnberg", "interest": ["computer science education", "debugging", "machine learning", "version control", "block-based programming"]}}

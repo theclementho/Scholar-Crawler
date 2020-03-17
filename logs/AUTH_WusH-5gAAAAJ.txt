@@ -1,0 +1,1 @@
+{"WusH-5gAAAAJ": {"name": "Mireille Ducass\u00e9", "gs_profile_id": "WusH-5gAAAAJ", "affiliation": "Professor of Computer Science, IRISA-INSA de Rennes", "interest": ["Formal concept analysis", "Logic programming", "Software engineering", "Debugging", "Group decision and negociation"]}}

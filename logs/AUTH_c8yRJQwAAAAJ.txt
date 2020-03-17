@@ -1,0 +1,1 @@
+{"c8yRJQwAAAAJ": {"name": "J. Ryan Stinnett", "gs_profile_id": "c8yRJQwAAAAJ", "affiliation": "EPFL", "interest": ["Humane Computing", "Malleable Systems", "Debugging", "Formal Verification"]}}

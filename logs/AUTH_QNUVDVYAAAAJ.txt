@@ -1,0 +1,1 @@
+{"QNUVDVYAAAAJ": {"name": "Maarten Faddegon", "gs_profile_id": "QNUVDVYAAAAJ", "affiliation": "Unknown affiliation", "interest": ["debugging", "tracing", "algorithmic debugging", "lazy evaluation", "Haskell"]}}

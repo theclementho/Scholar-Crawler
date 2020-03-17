@@ -1,0 +1,1 @@
+{"OQEb580AAAAJ": {"name": "Nick Sumner", "gs_profile_id": "OQEb580AAAAJ", "affiliation": "Associate Professor, Simon Fraser University", "interest": ["Program Analysis", "Debugging", "Testing", "Concurrency", "Software Engineering"]}}

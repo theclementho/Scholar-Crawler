@@ -1,0 +1,1 @@
+{"DfbVg0wAAAAJ": {"name": "RAFAEL CABALLERO ROLDAN", "gs_profile_id": "DfbVg0wAAAAJ", "affiliation": "Universidad Complutense de Madrid", "interest": ["Big Data", "Constraint Programming", "Debugging", "Test-Cases", "Astronomy"]}}

@@ -1,0 +1,1 @@
+{"KlDArpgAAAAJ": {"name": "Troy Costa Kohwalter", "gs_profile_id": "KlDArpgAAAAJ", "affiliation": "UFF, Professor (Assistant) in Computer Science", "interest": ["Games", "Provenance", "Analytics", "Autonomic Computing", "Debugging"]}}

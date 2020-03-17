@@ -1,0 +1,1 @@
+{"f3KDlFIAAAAJ": {"name": "Luis Gabriel Murillo", "gs_profile_id": "f3KDlFIAAAAJ", "affiliation": "VP Engineering, Silexica GmbH", "interest": ["Multi-core", "FPGA", "Embedded Systems", "Debugging", "Simulation"]}}
