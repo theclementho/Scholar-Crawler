@@ -8,7 +8,6 @@ from database.setup.author import Author
 from database.setup.todo_list import TodoList
 from sqlalchemy.sql import exists
 
-
 session = Session()
 
 # Constants
@@ -18,7 +17,6 @@ ORGANIZATION = 2
 NEW = 0
 ONGOING = 1
 DONE = 2
-
 
 def get_profile(gs_profile_id):
     """Find author using google scholar profile id"""
@@ -46,14 +44,12 @@ def add_author(name, gs_profile_id, affiliation, interest):
     """Add a single author"""
     print('Adding... ', name, gs_profile_id, affiliation, interest)
     if session.query(exists().where(Author.gs_profile_id == gs_profile_id)).scalar():
-        print('hello')
         return
     else:
         author = Author(name=name, gs_profile_id=gs_profile_id, affiliation=affiliation, interest=interest)
         session.add(author)
         queue_todo(name, AUTHOR)
         session.commit()
-
 
 def add_authors(authors):
     """Add a list of authors"""
@@ -65,7 +61,11 @@ def add_authors(authors):
 
 
 # test single author insertion
-# add_author("Different Chris", "dklfjalejF", "University of Toronto", "Self isolation, social distancing")
+# start = time.time()
+# add_author("Different Chris", "akdfjjas", "University of Toronto", "Self isolation, social distancing")
+# end = time.time()
+# print('Elapsed time: ', end - start)
+
 
 # time.sleep(0.5)
 
@@ -75,12 +75,12 @@ def add_authors(authors):
 
 # test adding multiple authors
 # multiple_authors = [
-#     {
-#         'name': 'Clement',
-#         'gs_profile_id': 'asljel',
-#         'affiliation': 'University of Toronto',
-#         'interest': 'A, B, C'
-#     },
+    # {
+    #     'name': 'Clement',
+    #     'gs_profile_id': 'asljel',
+    #     'affiliation': 'University of Toronto',
+    #     'interest': 'A, B, C'
+    # },
 #     {
 #         'name': 'Keven',
 #         'gs_profile_id': 'JEIIsljeliaj',
@@ -89,3 +89,21 @@ def add_authors(authors):
 #     }
 # ]
 # add_authors(multiple_authors)
+
+# TEST multiple authors 
+# authors = []
+# for i in range(100):
+#     authors.append({
+#         'name': 'Test' + str(i),
+#         'gs_profile_id': 'AABB' + str(i),
+#         'affiliation': 'Testing',
+#         'interest': 'A, B, C'
+#     })
+
+# print ('Length of array to be inserted: ', len(authors))
+
+# start = time.time()
+# add_authors(authors)
+# end = time.time()
+# print('Elapsed time: ', end - start)
+    

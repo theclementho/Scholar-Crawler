@@ -20,3 +20,4 @@ class Author(Base):
     def __repr__(self):
         return "<Author(name='{0}', affiliation='{1}', interest='{2}')>" \
             .format(self.name, self.affiliation, self.interest)
+            
