@@ -4,3 +4,4 @@ Crawler/
 __pycache__/
 .vscode/
 *config.py
+*.pyc
