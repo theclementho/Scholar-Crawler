@@ -64,6 +64,8 @@ def add_authors(authors):
 # start = time.time()
 # add_author("Different Chris", "akdfjjas", "University of Toronto", "Self isolation, social distancing")
 # end = time.time()
+# print('Elapsed time: ', end - start)
+
 
 
 # test = get_profile("dklfjalejE")
