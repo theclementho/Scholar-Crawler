@@ -18,7 +18,6 @@ NEW = 0
 ONGOING = 1
 DONE = 2
 
-
 def get_profile(gs_profile_id):
     """Find author using google scholar profile id"""
     author = session.query(Author).filter(Author.gs_profile_id == gs_profile_id).first()
