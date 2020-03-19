@@ -1,0 +1,1 @@
+{"g6Uzl7wAAAAJ": {"name": "Carl Bereiter", "gs_profile_id": "g6Uzl7wAAAAJ", "affiliation": "University of Toronto", "interest": ["learning sciences", "cscl", "knowledge building"]}}

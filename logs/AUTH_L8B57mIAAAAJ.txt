@@ -1,0 +1,1 @@
+{"L8B57mIAAAAJ": {"name": "James L Kennedy", "gs_profile_id": "L8B57mIAAAAJ", "affiliation": "Professor of Psychiatry, Centre for Addiction and Mental Health, University of Toronto", "interest": ["pharmacogenomics", "psychiatry", "genetics", "behavior"]}}

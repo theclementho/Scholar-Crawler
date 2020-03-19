@@ -1,0 +1,1 @@
+{"41yA9hgAAAAJ": {"name": "Mike Wu", "gs_profile_id": "41yA9hgAAAAJ", "affiliation": "CTO of Loupe, PhD from University of Toronto, HCI Researcher", "interest": ["Human Computer Interaction", "Memory", "Computer Science", "Assistive Technologies", "Tabletop Computing"]}}

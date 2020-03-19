@@ -1,0 +1,1 @@
+{"NqFgQYsAAAAJ": {"name": "Mitsuhiko Ikura", "gs_profile_id": "NqFgQYsAAAAJ", "affiliation": "Professor & Senior Scientist, Princess Margaret Cancer Centre, University of Toronto", "interest": ["Structural Biology and Cancer Cell Signalling"]}}

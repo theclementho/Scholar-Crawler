@@ -1,0 +1,1 @@
+{"3AGo6DUAAAAJ": {"name": "Kathleen I. Pritchard", "gs_profile_id": "3AGo6DUAAAAJ", "affiliation": "Professor, Division of Medical Oncology, University of Toronto", "interest": ["Correlative and Translational Research in Breast Cancer", "Endocrine Therapy for Breast Cancer", "Adjuvant Therapy for Breast Cancer"]}}

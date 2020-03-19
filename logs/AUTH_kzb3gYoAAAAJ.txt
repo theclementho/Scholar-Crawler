@@ -1,0 +1,1 @@
+{"kzb3gYoAAAAJ": {"name": "Bruce Pollock", "gs_profile_id": "kzb3gYoAAAAJ", "affiliation": "Professor and Director Geriatric Psychiatry, University of Toronto. Vice President Research, Centre for Addiction and Mental Hea", "interest": ["drug metabolism", "pharmacodynamics", "pharmacokinetics", "geriatric psychopharmacology"]}}

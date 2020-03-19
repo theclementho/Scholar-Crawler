@@ -1,0 +1,1 @@
+{"ymySTBMAAAAJ": {"name": "Bruce A. Francis", "gs_profile_id": "ymySTBMAAAAJ", "affiliation": "Professor Emeritus, Electrical and Computer Engineering, University of Toronto, Canada", "interest": ["robotics", "control", "system theory", "control theory", "control systems"]}}

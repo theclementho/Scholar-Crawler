@@ -1,0 +1,1 @@
+{"9CS0ysIAAAAJ": {"name": "Peter J\u00fcni", "gs_profile_id": "9CS0ysIAAAAJ", "affiliation": "Director, AHRC, St. Michael's Hospital, and Professor of Medicine, University of Toronto", "interest": ["Cardiology", "Meta-Analysis", "Rheumatology", "Clinical Trials", "Clinical Epidemiology"]}}

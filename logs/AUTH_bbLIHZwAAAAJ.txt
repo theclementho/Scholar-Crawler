@@ -1,0 +1,1 @@
+{"bbLIHZwAAAAJ": {"name": "Gillian Booth", "gs_profile_id": "bbLIHZwAAAAJ", "affiliation": "Professor of Medicine, University of Toronto", "interest": ["public health policy", "diabetes epidemiology", "built environment", "health services research"]}}

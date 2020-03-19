@@ -1,0 +1,1 @@
+{"a2FJg9wAAAAJ": {"name": "Frederick P (Fritz) Roth", "gs_profile_id": "a2FJg9wAAAAJ", "affiliation": "University of Toronto & Mt Sinai Hospital", "interest": ["Genomics", "Genetics", "Computational Biology"]}}

@@ -1,0 +1,1 @@
+{"rr8pZoUAAAAJ": [["Radford M Neal", 2020, "Non-reversibly updating a uniform [0, 1] value for Metropolis accept/reject decisions"], ["Alexander Y Shestopaloff", 2018, "Sampling latent states for high-dimensional non-linear state space models with the embedded HMM method"]]}

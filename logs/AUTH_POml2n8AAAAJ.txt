@@ -1,0 +1,1 @@
+{"POml2n8AAAAJ": {"name": "Sidney H. Kennedy", "gs_profile_id": "POml2n8AAAAJ", "affiliation": "Professor of Psychiatry, University of Toronto", "interest": ["Biomarkers", "Neurostimulation", "Neuroimaging", "Mood DIsorders", "Major Depressive Disorder"]}}

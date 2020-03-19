@@ -1,0 +1,1 @@
+{"Beb1-ngAAAAJ": {"name": "James Robert Brown", "gs_profile_id": "Beb1-ngAAAAJ", "affiliation": "Professor of Philosophy, University of Toronto", "interest": ["commercialization of research", "science and religion", "philosophy of mathematics", "thought experiments", "Philosophy of science"]}}

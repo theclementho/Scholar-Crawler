@@ -1,0 +1,1 @@
+{"rVi7vX0AAAAJ": {"name": "Calvin Barth Netterfield", "gs_profile_id": "rVi7vX0AAAAJ", "affiliation": "Professor, University of Toronto", "interest": ["balloon-borne astrophysics", "sub-mm astronomy", "cosmic microwave background"]}}

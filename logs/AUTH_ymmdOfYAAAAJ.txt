@@ -1,0 +1,1 @@
+{"ymmdOfYAAAAJ": {"name": "Moira Kapral", "gs_profile_id": "ymmdOfYAAAAJ", "affiliation": "Professor of Medicine, University of Toronto", "interest": ["stroke", "health services research"]}}

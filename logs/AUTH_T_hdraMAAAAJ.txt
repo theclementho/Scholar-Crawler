@@ -1,0 +1,1 @@
+{"T_hdraMAAAAJ": {"name": "Zheng-Hong Lu", "gs_profile_id": "T_hdraMAAAAJ", "affiliation": "University of Toronto", "interest": ["OLEDs", "Electronic Materials", "Organic Semiconductors", "Organic Optoelectronics"]}}

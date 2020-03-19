@@ -1,0 +1,1 @@
+{"_U9bzEAAAAAJ": {"name": "Kullervo Hynynen", "gs_profile_id": "_U9bzEAAAAAJ", "affiliation": "Professor of Medical Biophysics, University of Toronto", "interest": ["MRI. Imaging", "HIFU", "Biomedical Ultrasound", "Ultrasound"]}}

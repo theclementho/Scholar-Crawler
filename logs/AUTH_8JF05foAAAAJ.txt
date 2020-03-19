@@ -1,0 +1,1 @@
+{"8JF05foAAAAJ": {"name": "Robert S. Kerbel", "gs_profile_id": "8JF05foAAAAJ", "affiliation": "Sunnybrook Research Inst., University of Toronto", "interest": ["metastasis", "tumor angiogenesis", "cancer biology", "drug resistance", "metronomic chemotherapy"]}}

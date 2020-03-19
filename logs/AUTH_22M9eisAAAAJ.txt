@@ -1,0 +1,1 @@
+{"22M9eisAAAAJ": {"name": "Gary Bader", "gs_profile_id": "22M9eisAAAAJ", "affiliation": "Professor of Molecular Genetics and Computer Science, The Donnelly Centre, University of Toronto", "interest": ["Bioinformatics", "Network and Pathway Analysis", "Computational Biology"]}}

@@ -1,0 +1,1 @@
+{"Jdmn7bIAAAAJ": {"name": "Michael W. Salter", "gs_profile_id": "Jdmn7bIAAAAJ", "affiliation": "Chief of Research, SickKids Hospital", "interest": ["Neuron-glia interactions", "Neuroplasticity", "NMDA receptors", "Tyrosine kinases", "Pain mechanisms"]}}

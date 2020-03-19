@@ -11,35 +11,11 @@ sys.path.append(scholarlypath)
 import scholarly
 from collections import deque
 
-# Start with an organization queue, labels queue, and a profile ID queue
-# Take all of the authors (automatically sorted by number of citations) from an organization
-# From author profile, filter and take all coauthors based on the last date they worked with the author
-# Take their interests (searchable, to increase breadth of scraping) and add to queue
-# Take the organization and add to queue
-# If traversed all the organization numbers, switch to the label queue
-# Submit organization and label sets to server, and remove labels and organizations already visited
-# Repeat using queues, when organization queue is empty
-
 # Error logging:
 def openLogging():
     now = datetime.now().strftime("%d:%m:%Y_%H:%M:%S")
     logf = open("logs/scraping{0}.log".format(now), "w")
     return logf
-
-# TODO: Replace the placeholders with the queues
-# Start with UofT
-placeholder_orgnum = '8515235176732148308'
-# Pretend we also have a label from a queue
-placeholder_label = "Debugging"
-
-# deque operations
-# queue.append() adds an element to the end, queue.popleft() removes the first thing in it and returns it
-label_queue = deque()
-organization_queue = deque()
-
-# Next labels to search set -- needs to be verified with the database before every use; also update above queues
-# label_set = set()
-# organization_set = set()
 
 def retrieveAuthorsFromOrgNum(org_num):
     """Return a generator function to retrieve [ID, name, interests] of an author, given organization number"""
@@ -62,9 +38,9 @@ def retrieveAuthorPage(profileID):
     try:
         start_time = time.time()
         auth_profile = scholarly.auth_all_coauthors(profileID)
-        if auth_profile is None:
-            print("Error: Unable to retrieve profile for {0}".format(profileID))
-            return auth_profile
+        # if auth_profile is None:
+        #     print("Error: Unable to retrieve profile for {0}".format(profileID))
+        #     return auth_profile
         print("--- Retrieving {0}'s profile took {1} seconds ---".format(auth_profile.name, str(time.time() - start_time)))
         if not hasattr(auth_profile, 'organization'):
             print('No organization found for', auth_profile.name)
@@ -121,7 +97,7 @@ def saveNewAuthor(authProfile):
             'name': authProfile.name,
             'gs_profile_id': authProfile.id,
             'affiliation': authProfile.affiliation,
-            'interest': authProfile.interests,
+            'interest': list(authProfile.interests),
         }
         json.dump(author_info, saveFile)
     return
@@ -210,6 +186,7 @@ def scrapeListContent(generator, visited_authors):
     new_profiles = set()
     label_set = set()
     organization_set = set()
+    leftover_profiles = list()
     for profile_array in generator:
         if (profile_array[0] in visited_authors):
             print("Already done ID", profile_array[0])
@@ -226,7 +203,8 @@ def scrapeListContent(generator, visited_authors):
         saveNewAuthor(auth_profile)
         new_profiles.add(auth_profile.id)
 
-        # TODO: Add the coauthors written on their page to a queue "to search"
+        for id in auth_profile.coauthors:
+            leftover_profiles.append(id)
 
         coauthor_array = generateCoAuthorDict(auth_profile)
         saveNewRelations(auth_profile.id, coauthor_array)
@@ -237,10 +215,33 @@ def scrapeListContent(generator, visited_authors):
         if hasattr(auth_profile, 'organization'):
             organization_set.add(auth_profile.organization)
 
-    ## After testing, remove label_set and organization_set from return
+    # There are some extra profiles to seach so iterate through those too
+    print("Searching leftover profiles")
+    while len(leftover_profiles) != 0:
+        profile_id = leftover_profiles.pop()
+        if (profile_id in visited_authors):
+            print("Already done ID", profile_id)
+            continue
+        auth_profile = retrieveAuthorPage(profile_id)
+        if auth_profile is None:
+            print("Cannot find ID",profile_id)
+            continue
+        saveNewAuthor(auth_profile)
+        new_profiles.add(auth_profile.id)
+
+        for id in auth_profile.coauthors:
+            leftover_profiles.append(id)
+        
+        coauthor_array = generateCoAuthorDict(auth_profile)
+        saveNewRelations(auth_profile.id, coauthor_array)
+
+        label_set = label_set | auth_profile.interests
+        if hasattr(auth_profile, 'organization'):
+            organization_set.add(auth_profile.organization)
+
     return new_profiles, label_set, organization_set
 
-def manageSearchSets(first_label):
+def manageSearchSets():
     """This method spins up new threads to search each label and organization number.
     Start with an organization, and then labels, etc"""
 
@@ -287,11 +288,16 @@ def manageSearchSets(first_label):
 
             if (generator != None):
                 scrapedProfiles, label_set, org_set = scrapeListContent(generator, visited_authors)
+                # Add the new profiles to the visited profiles
                 visited_authors = visited_authors | scrapedProfiles
+                # Exclude the search areas which we've visited already
                 new_labels = label_set - visited_labels
                 new_orgs = org_set - visited_orgs
+                # Add the new set to the unvisited set
                 unvisited_labels = unvisited_labels | new_labels
                 unvisited_orgs = unvisited_orgs | new_orgs
+                # Save the set, so we can see the process.
+                saveSets(visited_labels, unvisited_labels, visited_orgs, unvisited_orgs, visited_authors, unvisited_authors)
             else:
                 print("Error! generator returned None! Skipping search query", search)
                 break
@@ -301,17 +307,8 @@ def manageSearchSets(first_label):
         saveSets(visited_labels, unvisited_labels, visited_orgs, unvisited_orgs, visited_authors, unvisited_authors)
 
 def main():
-    # Loop over the whole thing until both are empty
-    # while(label_queue or organization_queue):
-    """STEP 1: Get the author profiles from every profile in the organization"""
-
-    # TODO: Create set of parameters for author profile and coauthor information to send to database
-
-    # TODO: Submit the list of labels and organizations to database to filter the visited ones
-
-    # TODO: append the final organization_set and label_set to their respective queues
-
-    manageSearchSets("Debugging")
+    # This will start the search as long as there is a label or organization number in unvisited_labels.csv or unvisited_orgs.csv respectively.
+    manageSearchSets()
 
 if __name__ == "__main__":
     main()

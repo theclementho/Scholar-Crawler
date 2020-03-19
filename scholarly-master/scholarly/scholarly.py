@@ -284,7 +284,7 @@ class AuthorProfile(object):
                 if re.findall(_ORGAUTHRE, htmlTag['href']):
                     self.organization = re.findall(_ORGAUTHRE, htmlTag['href'])[0]
                     break
-        self.interests = [i.text.strip() for i in __data.find_all('a', class_='gsc_prf_inta')]
+        self.interests = set([i.text.strip() for i in __data.find_all('a', class_='gsc_prf_inta')])
         self.coauthors = {}
         coauthor_section = __data.find('ul', class_='gsc_rsb_a')
         if coauthor_section:

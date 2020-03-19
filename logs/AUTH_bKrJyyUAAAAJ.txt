@@ -1,0 +1,1 @@
+{"bKrJyyUAAAAJ": {"name": "J. Richard Bond", "gs_profile_id": "bKrJyyUAAAAJ", "affiliation": "Professor, Canadian Institute for Theoretical Astrophysics, University of Toronto", "interest": ["cosmology", "nuclear physics", "astrophysics", "particle theory"]}}

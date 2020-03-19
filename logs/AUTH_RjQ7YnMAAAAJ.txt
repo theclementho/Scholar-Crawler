@@ -1,0 +1,1 @@
+{"RjQ7YnMAAAAJ": {"name": "Brendan Frey", "gs_profile_id": "RjQ7YnMAAAAJ", "affiliation": "Founder & CEO, Deep Genomics; Co-Founder, Vector Institute; Professor, University of Toronto", "interest": ["Machine learning", "Artificial Intelligence", "Drug development", "Computational biology", "Genome biology"]}}

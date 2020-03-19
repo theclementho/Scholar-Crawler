@@ -1,0 +1,1 @@
+{"IrQnUwoAAAAJ": {"name": "Gustavo Saposnik, MD MSc FAHA FRCPC", "gs_profile_id": "IrQnUwoAAAAJ", "affiliation": "Associate Professor of Medicine (Neurology), University of Toronto", "interest": ["Outcomes Research", "Neuroeconomics", "Decision Neuroscience", "Rehabilitation Technologies", "Stroke"]}}

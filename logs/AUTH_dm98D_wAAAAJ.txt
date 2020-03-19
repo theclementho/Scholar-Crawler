@@ -1,0 +1,1 @@
+{"dm98D_wAAAAJ": {"name": "Charles Boone", "gs_profile_id": "dm98D_wAAAAJ", "affiliation": "Professor, Donnelly Centre, University of Toronto", "interest": ["Yeast Genetics", "Functional Genomics", "Genetic Networks"]}}

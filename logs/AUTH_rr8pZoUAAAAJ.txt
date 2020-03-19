@@ -1,0 +1,1 @@
+{"rr8pZoUAAAAJ": {"name": "Radford Neal", "gs_profile_id": "rr8pZoUAAAAJ", "affiliation": "Emeritus Professor, Dept. of Statistics and Dept. of Computer Science, University of Toronto", "interest": ["Machine learning", "Monte Carlo methods", "Neural networks", "Information theory", "Bayesian inference"]}}

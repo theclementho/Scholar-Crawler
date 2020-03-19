@@ -1,0 +1,1 @@
+{"JunBXVUAAAAJ": {"name": "John C Marshall", "gs_profile_id": "JunBXVUAAAAJ", "affiliation": "Professor of Surgery, University of Toronto", "interest": ["Critical Care Medicine", "Sepsis", "Innate Immunity", "Clinical Trials", "Apoptosis"]}}

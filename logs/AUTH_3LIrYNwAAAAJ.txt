@@ -1,0 +1,1 @@
+{"3LIrYNwAAAAJ": {"name": "Ming Tsao", "gs_profile_id": "3LIrYNwAAAAJ", "affiliation": "Professor of Laboratory Medicine and Pathobiology, University of Toronto, Senior Scientist and Consultant Pathologist, Princess ", "interest": ["translational research", "molecular pathology", "lung cancer", "pancreatic cancer"]}}

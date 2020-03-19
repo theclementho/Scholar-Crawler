@@ -1,0 +1,1 @@
+{"_wN2n1UAAAAJ": {"name": "Jack Greenblatt", "gs_profile_id": "_wN2n1UAAAAJ", "affiliation": "Professor, University of Toronto", "interest": ["Transcription", "Proteomics"]}}

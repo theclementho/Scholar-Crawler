@@ -1,0 +1,1 @@
+{"9uIyH1IAAAAJ": {"name": "Warren C W Chan", "gs_profile_id": "9uIyH1IAAAAJ", "affiliation": "Professor of the Institute of Biomaterials and Biomedical Engineering, University of Toronto", "interest": ["Nanotechnology", "Diagnostics", "Nanomedicine", "Drug Delivery"]}}

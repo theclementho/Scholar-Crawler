@@ -1,0 +1,1 @@
+{"TdxMocsAAAAJ": {"name": "David C. Bailey", "gs_profile_id": "TdxMocsAAAAJ", "affiliation": "University of Toronto", "interest": ["uncertainty", "high energy physics"]}}

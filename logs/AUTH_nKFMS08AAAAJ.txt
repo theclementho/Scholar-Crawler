@@ -1,0 +1,1 @@
+{"nKFMS08AAAAJ": {"name": "Spencer C.H. Barrett", "gs_profile_id": "nKFMS08AAAAJ", "affiliation": "Professor of Evolutionary Biology, University of Toronto", "interest": ["Evolutionary ecology", "Plant reproduction", "Evolutionary biology", "Evolutionary genetics"]}}

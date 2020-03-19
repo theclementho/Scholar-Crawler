@@ -1,0 +1,1 @@
+{"z_IsflYAAAAJ": {"name": "David JA Jenkins, MD, Ph.D, D.Sc", "gs_profile_id": "z_IsflYAAAAJ", "affiliation": "Professor, Depts. of Nutritional Sciences & Medicine, Faculty of Medicine, University of Toronto", "interest": ["Use of diet in the prevention and treatment of hyperlipidemia and diabetes"]}}
