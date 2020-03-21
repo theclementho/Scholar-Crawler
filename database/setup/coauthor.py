@@ -11,7 +11,7 @@ class Coauthor(Base):
     __tablename__ = 'coauthors'
 
     id = Column(Integer, primary_key=True)
-    person1_id = Column(Integer, ForeignKey('authors.id'))
+    person1_id = Column(String, ForeignKey('authors.gs_profile_id'))
     person1 = relationship("Author", backref="coauthors")
     person2_name = Column(String)
     most_recent_year = Column(Integer)
