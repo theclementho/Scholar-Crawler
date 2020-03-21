@@ -11,6 +11,8 @@ sys.path.append(scholarlypath)
 import scholarly
 from collections import deque
 
+from database import api
+
 # Error logging:
 def openLogging():
     now = datetime.now().strftime("%d:%m:%Y_%H:%M:%S")
@@ -90,23 +92,29 @@ def generateCoAuthorDict(profile):
 def writeToDatabase(profile):
     return
 
-def saveNewAuthor(authProfile):
-    with open("logs/AUTH_{0}.txt".format(authProfile.id), 'w') as saveFile:
-        author_info = dict()
-        author_info[authProfile.id] = {
-            'name': authProfile.name,
-            'gs_profile_id': authProfile.id,
-            'affiliation': authProfile.affiliation,
-            'interest': list(authProfile.interests),
-        }
-        json.dump(author_info, saveFile)
+def saveNewAuthor(authProfile, mode='file'):
+    author_info = dict()
+    author_info[authProfile.id] = {
+        'name': authProfile.name,
+        'gs_profile_id': authProfile.id,
+        'affiliation': authProfile.affiliation,
+        'interest': list(authProfile.interests),
+    }
+    if mode == 'file':
+        with open("logs/AUTH_{0}.txt".format(authProfile.id), 'w') as saveFile:
+            json.dump(author_info, saveFile)
+    elif mode == 'database':
+        api.add_author(author_info[authProfile.id])
     return
 
-def saveNewRelations(id, relationLists):
-    with open("logs/RELATIONS_{0}.txt".format(id), 'w') as saveFile:
-        authRelations = dict()
-        authRelations[id] = relationLists
-        json.dump(authRelations, saveFile)
+def saveNewRelations(id, relationLists, mode='file'):
+    authRelations = dict()
+    authRelations[id] = relationLists
+    if mode == 'file':
+        with open("logs/RELATIONS_{0}.txt".format(id), 'w') as saveFile:        
+            json.dump(authRelations, saveFile)
+    elif mode == 'database':
+        api.add_relations(id, relationLists)
     return
 
 def saveSets(visited_labels, unvisited_labels, visited_orgs, unvisited_orgs, visited_authors, unvisited_authors):
@@ -200,14 +208,14 @@ def scrapeListContent(generator, visited_authors):
         if auth_profile is None:
             print("Cannot find ID",profile_array[0])
             continue
-        saveNewAuthor(auth_profile)
+        saveNewAuthor(auth_profile, 'database')
         new_profiles.add(auth_profile.id)
 
         for id in auth_profile.coauthors:
             leftover_profiles.append(id)
 
         coauthor_array = generateCoAuthorDict(auth_profile)
-        saveNewRelations(auth_profile.id, coauthor_array)
+        saveNewRelations(auth_profile.id, coauthor_array, 'database')
         # new_relations[auth_profile.id] = coauthor_array
 
         # Add the labels and organizations into their sets
