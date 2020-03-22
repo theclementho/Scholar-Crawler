@@ -1,16 +1,27 @@
+import sys
+import dbconfig as cfg
+import argparse
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-import sys
+# determine whether run on local or RDS database server
+parser = argparse.ArgumentParser(allow_abbrev=False)
+parser.add_argument('-rds', '--rds', action='store_true', help="run on rds server")
+args = parser.parse_args()
+
 config = "database/setup/"
 sys.path.append(config)
-import dbconfig as cfg
-
-USER = cfg.local['username']
-PASS = cfg.local['password']
-HOST = cfg.local['host']
-DB = cfg.local['db']
+if args.rds:
+    USER = cfg.rds['username']
+    PASS = cfg.rds['password']
+    HOST = cfg.rds['host']
+    DB = cfg.rds['db']
+else:
+    USER = cfg.local['username']
+    PASS = cfg.local['password']
+    HOST = cfg.local['host']
+    DB = cfg.local['db']
 
 url = 'postgresql://{0}:{1}@{2}:5432/{3}'.format(USER, PASS, HOST, DB)
 
