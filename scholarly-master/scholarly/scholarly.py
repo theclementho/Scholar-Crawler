@@ -305,6 +305,8 @@ class AuthorProfile(object):
         url_citations = _CITATIONAUTH.format(selfID)
         within_5_years = True
         this_year = datetime.datetime.now().year
+        counter = 0
+        start_time = time.time()
         while within_5_years:
             for row in __data.find_all('tr', class_='gsc_a_tr'):
                 new_pub = Publication(row, 'citations')
@@ -325,6 +327,7 @@ class AuthorProfile(object):
                     if (new_pub.bib['year']):
                         pub_info['year'] = new_pub.bib['year']
                     self.publications.append(pub_info)
+                    counter += 1
 
             if 'disabled' not in __data.find('button', id='gsc_bpf_more').attrs and within_5_years:
                 pubstart += _PAGESIZE
@@ -332,6 +335,7 @@ class AuthorProfile(object):
                 __data = _get_soup(_HOST+url+_SORTAUTHPROFILEBYYEAR)
             else:
                 break
+        print("--- Retrieving {0} publications took {1} seconds ---".format(counter, str(time.time() - start_time)))
 
 class Author(object):
     """Returns an object for a single author"""

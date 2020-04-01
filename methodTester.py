@@ -19,6 +19,7 @@ import scholarly
 uoft_org = '8515235176732148308'
 example_label = "Debugging"
 DY_id = 'g7PHxIYAAAAJ'
+BL_id = 'rkb3_FgAAAAJ'
 
 def printAuthorInfoFromGenerator(generator):
     try:
@@ -37,10 +38,10 @@ def printAuthorProfile(authorProfile):
         print("Affiliation: ", authorProfile.affiliation)
         print("Interests: ", authorProfile.interests)
         print("Coauthors: ", authorProfile.coauthors)
-        if hasattr('organization', authorProfile):
+        if hasattr(authorProfile, 'organization'):
             print("Organization number: ", authorProfile.organization)
 
-        if hasattr('publications', authorProfile):
+        if hasattr(authorProfile, 'publications'):
             print ("Publications:")
             for row in authorProfile.publications:
                 print("Title: ", row['title'])
@@ -92,11 +93,18 @@ def test_scrapeListContent():
         json.dump(newRelations, scraped)
 
     print("Total test took {0} seconds.".format(str(time.time()-test_start)))
-    
+
+def test_save():
+    authorProfile = crawl.retrieveAuthorPage(BL_id)
+    printAuthorProfile(authorProfile)
+    crawl.saveNewAuthor(authorProfile, 'file')
+    coauthors = crawl.generateCoAuthorDict(authorProfile)
+    crawl.saveNewRelations(authorProfile.id, coauthors, 'file')
 
 if __name__ == '__main__':
     # test_retrieveAuthorsFromOrgNum()
     # test_retrieveAuthorsFromLabels()
     # test_retrieveAuthorPage()
     # test_generateCoAuthorDict()
-    test_scrapeListContent()
+    # test_scrapeListContent()
+    test_save()

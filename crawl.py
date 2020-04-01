@@ -11,7 +11,7 @@ sys.path.append(scholarlypath)
 import scholarly
 from collections import deque
 
-from database import api
+# from database import api
 
 # Error logging:
 def openLogging():
@@ -88,10 +88,6 @@ def generateCoAuthorDict(profile):
         logf.write(str(e))
         print(str(e))
 
-### TODO: Add to this when the database API is known
-def writeToDatabase(profile):
-    return
-
 def saveNewAuthor(authProfile, mode='file'):
     author_info = dict()
     author_info[authProfile.id] = {
@@ -110,10 +106,10 @@ def saveNewAuthor(authProfile, mode='file'):
 def saveNewRelations(id, relationLists, mode='file'):
     authRelations = dict()
     authRelations[id] = relationLists
-    if mode == 'file':
+    if mode == 'file' or mode == 'both':
         with open("logs/RELATIONS_{0}.txt".format(id), 'w') as saveFile:        
             json.dump(authRelations, saveFile)
-    elif mode == 'database':
+    elif mode == 'database' or mode == 'both':
         api.add_relations(id, relationLists)
     return
 
@@ -208,14 +204,14 @@ def scrapeListContent(generator, visited_authors):
         if auth_profile is None:
             print("Cannot find ID",profile_array[0])
             continue
-        saveNewAuthor(auth_profile, 'database')
+        saveNewAuthor(auth_profile, 'both')
         new_profiles.add(auth_profile.id)
 
         for id in auth_profile.coauthors:
             leftover_profiles.append(id)
 
         coauthor_array = generateCoAuthorDict(auth_profile)
-        saveNewRelations(auth_profile.id, coauthor_array, 'database')
+        saveNewRelations(auth_profile.id, coauthor_array, 'both')
         # new_relations[auth_profile.id] = coauthor_array
 
         # Add the labels and organizations into their sets
@@ -234,14 +230,14 @@ def scrapeListContent(generator, visited_authors):
         if auth_profile is None:
             print("Cannot find ID",profile_id)
             continue
-        saveNewAuthor(auth_profile)
+        saveNewAuthor(auth_profile, 'both')
         new_profiles.add(auth_profile.id)
 
         for id in auth_profile.coauthors:
             leftover_profiles.append(id)
         
         coauthor_array = generateCoAuthorDict(auth_profile)
-        saveNewRelations(auth_profile.id, coauthor_array)
+        saveNewRelations(auth_profile.id, coauthor_array, 'both')
 
         label_set = label_set | auth_profile.interests
         if hasattr(auth_profile, 'organization'):
