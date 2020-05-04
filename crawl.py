@@ -11,7 +11,7 @@ sys.path.append(scholarlypath)
 import scholarly
 from collections import deque
 
-# from database import api
+from database import api
 
 # Error logging:
 def openLogging():

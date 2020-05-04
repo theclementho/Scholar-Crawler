@@ -1,5 +1,4 @@
 import sys
-import dbconfig as cfg
 import argparse
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -10,8 +9,9 @@ parser = argparse.ArgumentParser(allow_abbrev=False)
 parser.add_argument('-rds', '--rds', action='store_true', help="run on rds server")
 args = parser.parse_args()
 
-config = "database/setup/"
-sys.path.append(config)
+configPath = 'database/setup/'
+sys.path.append(configPath)
+import dbconfig as cfg
 if args.rds:
     USER = cfg.rds['username']
     PASS = cfg.rds['password']
