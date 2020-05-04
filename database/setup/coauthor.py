@@ -9,6 +9,8 @@ class Coauthor(Base):
             e.g. one author may have multiple coauthors
     """
     __tablename__ = 'coauthors'
+    __table_args__ = {'extend_existing': True} 
+
 
     id = Column(Integer, primary_key=True)
     person1_id = Column(String, ForeignKey('authors.gs_profile_id'))

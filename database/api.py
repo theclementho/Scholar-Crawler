@@ -1,12 +1,24 @@
 import time
 import sys
-sys.path.append('..')
-sys.path.append('setup/')
+sys.path.append('database/setup/')
 
-from database.setup.base import Session
-from database.setup.author import Author
-from database.setup.coauthor import Coauthor
-from database.setup.todo_list import TodoList
+from base import Session
+from author import Author
+from coauthor import Coauthor
+from todo_list import TodoList
+# sys.path.append('..')
+# sys.path.append('setup/')
+
+# from database.setup.base import Session
+# from database.setup.author import Author
+# from database.setup.coauthor import Coauthor
+# from database.setup.todo_list import TodoList
+
+# from .setup.base import Session
+# from .setup.author import Author
+# from .setup.coauthor import Coauthor
+# from .setup.todo_list import TodoList
+
 from sqlalchemy.sql import exists
 
 session = Session()
